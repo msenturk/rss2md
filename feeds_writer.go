@@ -25,6 +25,8 @@ var openaiBaseURL string
 var openaiModel string
 var reading_time bool
 var show_images bool
+var from_email string
+var email_password string
 var myFeeds []RSS
 var db *sql.DB
 
@@ -42,9 +44,6 @@ type Writer interface {
 }
 
 func getWriter() Writer {
-	if terminalMode {
-		return TerminalWriter{}
-	}
 	return MarkdownWriter{}
 }
 
@@ -197,6 +196,8 @@ func generateFeedItems(w Writer, feed *gofeed.Feed, rss RSS) string {
 		items += w.writeLink(title, link, true, timeInMin)
 		if rss.summarize {
 			items += w.writeSummary(summary, true)
+			// add 2 spaces after the summary
+			items += "  "
 		}
 
 		if show_images && !terminalMode {
@@ -210,6 +211,7 @@ func generateFeedItems(w Writer, feed *gofeed.Feed, rss RSS) string {
 		if !seen_today {
 			addToSeenTable(item.Link, summary)
 		}
+
 	}
 
 	return items

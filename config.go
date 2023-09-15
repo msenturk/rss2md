@@ -26,7 +26,7 @@ google_news_keywords: George Hotz,ChatGPT,Copenhagen
 instapaper: true
 weather_latitude: 37.77
 weather_longitude: 122.41
-terminal_mode: false
+terminal_mode: false'
 opml_file_path:
 markdown_file_prefix:
 markdown_file_suffix:
@@ -35,7 +35,9 @@ openai_api_key:
 openai_base_url:
 openai_model:
 summary_feeds:
-show_images: false`
+show_images: false
+from_email:
+email_password:`
 
 func parseOPML(xmlContent []byte) []RSS {
 	o := Opml{}
@@ -59,7 +61,7 @@ func parseOPML(xmlContent []byte) []RSS {
 }
 
 func getFeedAndLimit(feedURL string) (string, int) {
-	var limit = 20 // default limit
+	var limit = 5 // default limit
 	chopped := strings.Split(feedURL, " ")
 	if len(chopped) > 1 {
 		var err error
@@ -130,6 +132,12 @@ func bootstrapConfig() {
 	}
 	if viper.IsSet("openai_model") {
 		openaiModel = viper.Get("openai_model").(string)
+	}
+	if viper.IsSet("from_email") {
+		from_email = viper.Get("from_email").(string)
+	}
+	if viper.IsSet("email_password") {
+		email_password = viper.Get("email_password").(string)
 	}
 
 	if viper.IsSet("summary_feeds") {
