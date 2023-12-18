@@ -2,6 +2,9 @@ name: Release Go project
 
 on:
   workflow_dispatch:
+  push:
+    tags:
+      - '*'
 
 jobs:
   goreleaser:
