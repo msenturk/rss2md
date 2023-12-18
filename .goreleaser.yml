@@ -37,15 +37,3 @@ snapshot:
 # Checksum and signing configuration
 checksum:
   name_template: 'checksums.txt'
-signs:
-  - artifacts: checksum
-    args:
-      - "--output"
-      - "${artifact}.sig"
-      - "--detach-sign"
-      - "${artifact}"
-
-# Hooks (optional, add if needed)
-# hooks:
-#   pre: scripts/pre-release.sh
-#   post: scripts/post-release.sh
