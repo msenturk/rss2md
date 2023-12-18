@@ -10,11 +10,21 @@ builds:
       - amd64
 
 archives:
-  - format_overrides:
+  - id: myarchive
+    builds:
+      - your_build_id
+    format: zip
+    format_overrides:
       - goos: windows
         format: zip
+    files:
+      - licence*
+      - readme.md
     replacements:
+      darwin: Darwin
+      linux: Linux
       windows: Windows
+      386: i386
       amd64: x86_64
 
 release:
