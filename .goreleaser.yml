@@ -7,15 +7,21 @@ builds:
     goos:
       - windows
     goarch:
-      - arm64
+      - amd64
+
 archives:
-  - replacements:
+  - format_overrides:
+      - goos: windows
+        format: zip
+    replacements:
       windows: Windows
       amd64: x86_64
+
 release:
   github:
     owner: msenturk
     name: rss2md
   prerelease: auto
+
 snapshot:
   name_template: "{{ .Tag }}-next"
