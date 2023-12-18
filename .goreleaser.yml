@@ -1,0 +1,21 @@
+# Documentation: http://goreleaser.com
+builds:
+  - id: rss2md
+    binary: rss2md
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - windows
+    goarch:
+      - arm64
+archives:
+  - replacements:
+      windows: Windows
+      amd64: x86_64
+release:
+  github:
+    owner: msenturk
+    name: rss2md
+  prerelease: auto
+snapshot:
+  name_template: "{{ .Tag }}-next"
