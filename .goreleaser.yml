@@ -12,17 +12,18 @@ builds:
 archives:
   - id: myarchive
     builds:
-      - rss2md  # This should match the ID in the builds section
+      - rss2md
     format: zip
     format_overrides:
       - goos: windows
         format: zip
     files:
-      - licence*  # Ensure these files exist in your repo
+      - licence*
       - readme.md
-    replacements:
-      windows: Windows
-      amd64: x86_64
+
+replacements:
+  windows: Windows
+  amd64: x86_64
 
 release:
   github:
