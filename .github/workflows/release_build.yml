@@ -20,7 +20,7 @@ jobs:
           go-version: 1.21.5  # Update this to the Go version you want to use
 
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v0.x.x  # Replace with the actual latest version
+        uses: goreleaser/goreleaser-action@master  # Replace with the actual latest version
         with:
           version: latest
           args: release --clean  # Remove --snapshot for real releases
