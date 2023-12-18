@@ -21,10 +21,6 @@ archives:
       - licence*
       - readme.md
 
-replacements:
-  windows: Windows
-  amd64: x86_64
-
 release:
   github:
     owner: msenturk
