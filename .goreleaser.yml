@@ -1,4 +1,6 @@
 # Documentation: http://goreleaser.com
+
+# Build configuration
 builds:
   - id: rss2md
     binary: rss2md
@@ -9,6 +11,7 @@ builds:
     goarch:
       - amd64
 
+# Archive configuration
 archives:
   - id: myarchive
     builds:
@@ -18,14 +21,31 @@ archives:
       - goos: windows
         format: zip
     files:
-      - licence*
-      - readme.md
+      - README.md  # Ensure this matches the filename in your repository
 
+# Release configuration
 release:
   github:
     owner: msenturk
     name: rss2md
   prerelease: auto
 
+# Snapshot configuration
 snapshot:
   name_template: "{{ .Tag }}-next"
+
+# Checksum and signing configuration
+checksum:
+  name_template: 'checksums.txt'
+signs:
+  - artifacts: checksum
+    args:
+      - "--output"
+      - "${artifact}.sig"
+      - "--detach-sign"
+      - "${artifact}"
+
+# Hooks (optional, add if needed)
+# hooks:
+#   pre: scripts/pre-release.sh
+#   post: scripts/post-release.sh
